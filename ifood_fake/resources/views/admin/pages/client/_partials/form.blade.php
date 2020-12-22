@@ -13,7 +13,7 @@
     <input type="text" name="phone" placeholder="Telefone" class="form-control" value="{{old("phone")}}">
 </div>
 <div class="form-group">
-    <input type="password" name="password" placeholder="Senha" class="form-control" value="{{old("password")}}">
+    <input type="text" name="password" placeholder="Senha" class="form-control" value="{{old("password")}}">
 </div>
 <div class="form-group">
     <button class="btn btn-success">Cadastrar</button>

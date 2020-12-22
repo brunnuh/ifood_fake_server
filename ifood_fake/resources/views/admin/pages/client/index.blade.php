@@ -30,8 +30,11 @@
                             <form action="{{route("clients.destroy", $client->id)}}" method="POST">
                                 @csrf
                                 @method("DELETE")
+                                <a href="{{route("address_client.create", $client->id)}}" class="btn btn-info">Endereço</a>
                                 <button class="btn btn-danger"> Deletar</button>
+
                             </form>
+
                         </th>
                     </tr>
                 @endforeach

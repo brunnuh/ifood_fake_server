@@ -14,7 +14,7 @@ class AddressClient extends Migration
     public function up()
     {
         Schema::create('address_client', function (Blueprint $table) {
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("client_id");
             $table->string("street");
             $table->string("neighborhood");
             $table->integer("number_house");
@@ -25,7 +25,7 @@ class AddressClient extends Migration
             $table->boolean("favorite_like")->default(0);
             $table->timestamps();
 
-            $table->foreign("user_id")->on("clients")->references("id")->onDelete("cascade");
+            $table->foreign("client_id")->on("clients")->references("id")->onDelete("cascade");
         });
     }
 

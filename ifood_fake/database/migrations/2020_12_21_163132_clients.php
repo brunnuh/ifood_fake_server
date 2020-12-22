@@ -19,7 +19,7 @@ class Clients extends Migration
             $table->string("cpf", 11)->unique();
             $table->string("email")->unique();
             $table->string("phone", 14);
-            $table->string("password", 30);
+            $table->string("password");
             $table->timestamps();
         });
     }

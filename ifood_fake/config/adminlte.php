@@ -236,6 +236,11 @@ return [
             'url'  => 'admin/clients',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Categorias',
+            'url'  => 'admin/categories',
+            'icon' => 'fas fa-align-center',
+        ],
     ],
 
     /*
