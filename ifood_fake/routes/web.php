@@ -24,7 +24,10 @@ Route::namespace("Admin\Web")->prefix("admin")->group(function (){
     /*
      * Routes Categories
      */
+    Route::put("categories/{id}","CategoryController@update")->name("categories.update");
+    Route::get("categories", "CategoryController@index")->name("categories.index");
+    Route::get("categories/create", "CategoryController@create")->name("categories.create");
+    Route::get("categories/{id}","CategoryController@edit")->name("categories.edit");
 
-    //Route::get("categories", "CategoryController@index")->name("categories.index");
-
+    Route::post("categories", "CategoryController@store")->name("categories.store");
 });

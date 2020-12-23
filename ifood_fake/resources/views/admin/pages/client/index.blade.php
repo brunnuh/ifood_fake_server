@@ -11,33 +11,33 @@
     <div class="card-body">
         <table class="table table-condensed">
             <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Acões</th>
-                </tr>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Acões</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach($clients as $client)
-                    <tr>
-                        <th>{{$client->full_name}}</th>
-                        <th>{{$client->cpf}}</th>
-                        <th>{{$client->email}}</th>
-                        <th>{{$client->phone}}</th>
-                        <th>
-                            <form action="{{route("clients.destroy", $client->id)}}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <a href="{{route("address_client.create", $client->id)}}" class="btn btn-info">Endereço</a>
-                                <button class="btn btn-danger"> Deletar</button>
+            @foreach($clients as $client)
+                <tr>
+                    <th>{{$client->full_name}}</th>
+                    <th>{{$client->cpf}}</th>
+                    <th>{{$client->email}}</th>
+                    <th>{{$client->phone}}</th>
+                    <th>
+                        <form action="{{route("clients.destroy", $client->id)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <a href="{{route("address_client.create", $client->id)}}" class="btn btn-info">Endereço</a>
+                            <button class="btn btn-danger"> Deletar</button>
 
-                            </form>
+                        </form>
 
-                        </th>
-                    </tr>
-                @endforeach
+                    </th>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
