@@ -41,4 +41,5 @@ Route::namespace("Admin\Web")->prefix("admin")->group(function (){
      */
     Route::put("restaurants/{cnpj}/modify_operating", "RestaurantController@modifyStatus")->name("restaurants.modify_operating");
     Route::resource("restaurants", "RestaurantController");
+
 });
