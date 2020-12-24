@@ -28,6 +28,17 @@ Route::namespace("Admin\Web")->prefix("admin")->group(function (){
     Route::get("categories", "CategoryController@index")->name("categories.index");
     Route::get("categories/create", "CategoryController@create")->name("categories.create");
     Route::get("categories/{id}","CategoryController@edit")->name("categories.edit");
-
     Route::post("categories", "CategoryController@store")->name("categories.store");
+
+
+    /*
+     * Routes Products
+     */
+    Route::resource("products", "ProductController");
+
+    /*
+     * Routes Restaurants
+     */
+    Route::put("restaurants/{cnpj}/modify_operating", "RestaurantController@modifyStatus")->name("restaurants.modify_operating");
+    Route::resource("restaurants", "RestaurantController");
 });

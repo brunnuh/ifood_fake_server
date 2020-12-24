@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Restaurant extends Model
 {
-    protected $fillable = ["photo", "name", "description"];
-
+    protected $fillable = ["image", "name", "phone", "status_operating", "note"];
+    protected $primaryKey = "cnpj";
 
     public function products()
     {

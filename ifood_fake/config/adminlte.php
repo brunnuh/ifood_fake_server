@@ -241,6 +241,16 @@ return [
             'url'  => 'admin/categories',
             'icon' => 'fas fa-align-center',
         ],
+        [
+            'text' => 'Restaurantes',
+            'url'  => 'admin/restaurants',
+            'icon' => 'fas fa-align-center',
+        ],
+        [
+            'text' => 'Produtos',
+            'url'  => 'admin/products',
+            'icon' => 'fas fa-align-center',
+        ],
     ],
 
     /*
