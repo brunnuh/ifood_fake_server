@@ -3,7 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::namespace("Admin\Web")->prefix("admin")->group(function (){
+Route::namespace("Admin\Web")
+    ->prefix("admin")
+    ->middleware("auth")
+    ->group(function (){
+
+    /*
+     * Routes Home
+     */
+    Route::get("/home", function (){
+        return view("admin.pages.home");
+    })->name("admin.home");
 
     /*
      * Routes Users
@@ -44,3 +54,6 @@ Route::namespace("Admin\Web")->prefix("admin")->group(function (){
     Route::resource("restaurants", "RestaurantController");
 
 });
+
+Auth::routes();
+

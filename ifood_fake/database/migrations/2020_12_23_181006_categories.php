@@ -15,12 +15,15 @@ class Categories extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id("id");
+            $table->unsignedBigInteger("user_id");
             $table->string("photo")->nullable();
             $table->string("name")->unique();
             $table->string("description")->default("descricão da categoria");
             $table->timestamps();
 
-
+            $table->foreign("user_id")->on("users")
+                                              ->references("id")
+                                              ->onDelete("cascade");
         });
     }
 

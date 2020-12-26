@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,10 +13,11 @@ class RestaurantController extends Controller
 {
 
     private $restaurant;
-
-    public function __construct(Restaurant $restaurant)
+    private $user;
+    public function __construct(Restaurant $restaurant, User $user)
     {
         $this->restaurant = $restaurant;
+        $this->user = $user;
     }
 
     /**
@@ -25,7 +27,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = $this->restaurant->paginate();
+        $restaurants = $this->restaurant->with("user:id,full_name")->paginate();
         return view("admin.pages.restaurant.index",[
             "restaurants" => $restaurants
         ]);
@@ -38,7 +40,11 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.restaurant.create");
+        $users = $this->user->all();
+
+        return view("admin.pages.restaurant.create",[
+            "users" => $users
+        ]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,9 +15,11 @@ class CategoryController extends Controller
      * @var Category
      */
     private $category;
+    private $user;
 
-    public function __construct(Category $category)
+    public function __construct(Category $category, User $user)
     {
+        $this->user = $user;
         $this->category = $category;
     }
 
@@ -32,7 +35,10 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view("admin.pages.category.create");
+        $users = $this->user->all();
+        return view("admin.pages.category.create",[
+            "users" => $users
+        ]);
     }
 
     public function store(CategoryRequest $request)
