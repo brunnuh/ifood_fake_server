@@ -1,9 +1,9 @@
 @extends("adminlte::page")
 
-@section("title", "clientes")
+@section("title", "Usuarios")
 
 @section("content_header")
-    <h2>Clientes <a href="{{route("clients.create")}}" class="btn btn-success">New</a></h2>
+    <h2>Usuarios <a href="{{route("users.create")}}" class="btn btn-success">New</a></h2>
 
 @endsection
 
@@ -20,17 +20,17 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($clients as $client)
+            @foreach($users as $user)
                 <tr>
-                    <th>{{$client->full_name}}</th>
-                    <th>{{$client->cpf}}</th>
-                    <th>{{$client->email}}</th>
-                    <th>{{$client->phone}}</th>
+                    <th>{{$user->full_name}}</th>
+                    <th>{{$user->cpf}}</th>
+                    <th>{{$user->email}}</th>
+                    <th>{{$user->phone}}</th>
                     <th>
-                        <form action="{{route("clients.destroy", $client->id)}}" method="POST">
+                        <form action="{{route("users.destroy", $user->id)}}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <a href="{{route("address_client.create", $client->id)}}" class="btn btn-info">Endereço</a>
+                            <a href="{{route("address.create", $user->id)}}" class="btn btn-info">Endereço</a>
                             <button class="btn btn-danger"> Deletar</button>
 
                         </form>

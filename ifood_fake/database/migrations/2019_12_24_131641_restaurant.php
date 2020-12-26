@@ -15,12 +15,15 @@ class Restaurant extends Migration
     {
         Schema::create("restaurants", function (Blueprint $table){
             $table->id("cnpj");
+            $table->unsignedBigInteger("user_id");
             $table->string("image");
             $table->string("name")->unique();
             $table->string("phone", 14);
             $table->boolean("status_operating")->default(0);
             $table->float("note", 10, 2)->default(0.00);
             $table->timestamps();
+
+            $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade");
         });
     }
 

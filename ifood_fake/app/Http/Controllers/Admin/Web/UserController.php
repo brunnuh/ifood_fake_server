@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin\Web;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\ClientRequest;
-use App\Models\Client;
+use App\Http\Requests\UsersRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class UserController extends Controller
 {
 
-    protected $client;
+    protected $user;
 
-    public function __construct(Client $client)
+    public function __construct(User $users)
     {
-        $this->client = $client;
+        $this->user = $users;
     }
 
     /**
@@ -25,9 +25,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = $this->client->paginate();
-        return view("admin.pages.client.index",[
-            "clients" => $clients
+        $users = $this->user->paginate();
+        return view("admin.pages.user.index",[
+            "users" => $users
         ]);
     }
 
@@ -38,7 +38,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.client.create");
+        return view("admin.pages.user.create");
     }
 
     /**
@@ -47,19 +47,20 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ClientRequest $request)
+    public function store(UsersRequest $request)
     {
+
         $data = $request->all();
         $data["password"] = bcrypt($data["password"]);
-        $this->client->create($data);
-        return redirect()->route("clients.index");
+        $this->user->create($data);
+        return redirect()->route("users.index");
     }
 
     public function destroy($id)
     {
-        $client = $this->client->find($id);
-        $client->delete();
-        return redirect()->route("clients.index");
+        $user = $this->user->find($id);
+        $user->delete();
+        return redirect()->route("users.index");
     }
 
 

@@ -232,8 +232,8 @@ return [
 
     'menu' => [
         [
-            'text' => 'Clientes',
-            'url'  => 'admin/clients',
+            'text' => 'Usuarios',
+            'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

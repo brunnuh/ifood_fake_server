@@ -6,18 +6,19 @@ use Illuminate\Support\Facades\Route;
 Route::namespace("Admin\Web")->prefix("admin")->group(function (){
 
     /*
-     * Routes Clients
+     * Routes Users
      */
-    Route::get("clients", "ClientController@index")->name("clients.index");
-    Route::get("clients/create", "ClientController@create")->name("clients.create");
-    Route::post("clients", "ClientController@store")->name("clients.store");
-    Route::delete("clients/{id}", "ClientController@destroy")->name("clients.destroy");
+    Route::get("users", "UserController@index")->name("users.index");
+    Route::get("users/create", "UserController@create")->name("users.create");
+    Route::post("users", "UserController@store")->name("users.store");
+    Route::delete("users/{id}", "UserController@destroy")->name("users.destroy");
 
     /*
-     * Routes Address_Client
+     * Routes Address
      */
-    Route::post("address_client/{id}", "AddressClientController@store")->name("address_client.store");
-    Route::get("address_client/{id}", "AddressClientController@create")->name("address_client.create");
+    Route::put("address/{id}", "AddressController@update")->name("address.update");
+    Route::post("address/{id}", "AddressController@store")->name("address.store");
+    Route::get("address/{id}", "AddressController@create")->name("address.create");
 
 
 
