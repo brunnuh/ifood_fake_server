@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -83,11 +84,19 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        $categories = $this->category->all();
+        $restaurants = $this->restaurant->all();
+
+        return view("admin.pages.product.edit",[
+            "categories" => $categories,
+            "restaurants" => $restaurants,
+            "product" => $product
+        ]);
     }
 
     /**
@@ -95,11 +104,18 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $data = $request->except("image");
+        $product = $this->product->findOrFail($id);
+        if($request->hasFile("image") && $request->image->isValid()){
+            Storage::delete($product->image);
+            $data["image"] = $request->image->store("products/".$request->name);
+        }
+        $product->update($data);
+        return redirect()->route("products.index");
     }
 
     /**
@@ -110,6 +126,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        if(!is_null($product->image)){
+            Storage::delete($product->image);
+        }
+        $product->delete();
+        return redirect()->route("products.index");
     }
 }

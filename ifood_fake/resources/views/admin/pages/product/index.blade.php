@@ -31,7 +31,13 @@
                     <th>{{$product->restaurant->name}}</th>
                     <th>{{$product->category->name}}</th>
                     <th>
-                        <a href="{{route("products.edit", $product->id)}}" class="btn btn-info">Editar</a>
+
+                        <form action="{{route("products.destroy", $product->id)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <a href="{{route("products.edit", $product->id)}}" class="btn btn-info">Editar</a>
+                            <button  type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
                     </th>
                 </tr>
             @endforeach
