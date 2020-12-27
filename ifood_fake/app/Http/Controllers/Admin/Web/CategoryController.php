@@ -15,19 +15,18 @@ class CategoryController extends Controller
      * @var Category
      */
     private $category;
-    private $user;
 
-    public function __construct(Category $category, User $user)
+
+    public function __construct(Category $category)
     {
-        $this->user = $user;
         $this->category = $category;
     }
 
 
     public function index()
     {
-        $categories = $this->category->paginate();
 
+        $categories = auth()->user()->categories()->get();
         return view("admin.pages.category.index",[
             "categories" => $categories
         ]);
@@ -35,16 +34,13 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $users = $this->user->all();
-        return view("admin.pages.category.create",[
-            "users" => $users
-        ]);
+        return view("admin.pages.category.create");
     }
 
     public function store(CategoryRequest $request)
     {
         $data = $request->except("photo");
-
+        $data["user_id"] = auth()->id();
         if ($request->hasFile("photo") && $request->photo->isValid()){
             $data["photo"] = $request->photo->store("categories");
         }

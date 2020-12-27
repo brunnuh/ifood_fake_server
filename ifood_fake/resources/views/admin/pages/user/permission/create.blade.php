@@ -15,6 +15,7 @@
         <div class="card-body">
             <form action="{{route("users.put_permissions", $user->id)}}" METHOD="POST" class="form-group">
                 @csrf
+                @method("POST")
                 <select name="permissions[]" multiple class="form-control">
                     @foreach($permissions as $permission)
                         <option value="{{$permission->id}}" >

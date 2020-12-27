@@ -8,7 +8,7 @@
             Permissões do usuario {{$user->full_name}}
         </h2>
         <h3>
-            <a href="{{route("users.select_permissions", $user->id)}}" class="btn btn-info">Novas Permissões</a>
+            <a href="{{route("users.getPermissions", $user->id)}}" class="btn btn-info">Novas Permissões</a>
         </h3>
     </div>
 @endsection

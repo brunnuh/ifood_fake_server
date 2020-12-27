@@ -20,11 +20,13 @@ class UsersPermissions extends Migration
            $table->timestamps();
            $table->foreign("user_id")
                  ->on("users")
-                 ->references("id");
+                 ->references("id")
+                 ->cascadeOnDelete();
 
             $table->foreign("permission_id")
                 ->on("permissions")
-                ->references("id");
+                ->references("id")
+                ->cascadeOnDelete();
         });
     }
 

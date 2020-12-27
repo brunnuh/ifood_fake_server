@@ -40,11 +40,14 @@ class UserController extends Controller
 
     public function getPermissions($id)
     {
+
         $permissions = $this->permission->all();
         $user = $this->user->select("id", "full_name")->where("id",$id)->first();
+        //$user = $this->user->find($id);
+
         return view("admin.pages.user.permission.create",[
             "permissions" => $permissions,
-            "user" => $user->with("permissions:id,name")->first()
+            "user" => $user
         ]);
     }
 

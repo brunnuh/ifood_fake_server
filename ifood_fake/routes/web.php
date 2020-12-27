@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-
+Route::get("test", function (){
+   dd(auth()->user()->isAdmin());
+});
 Route::namespace("Admin\Web")
     ->prefix("admin")
     ->middleware("auth")
@@ -19,19 +21,19 @@ Route::namespace("Admin\Web")
      * Routes Permissios
      */
 
-    Route::resource("permissions", "PermissionController");
+    Route::resource("permissions", "PermissionController")->middleware("can:permissions");
 
     /*
      * Routes Users
      */
-    Route::get("users", "UserController@index")->name("users.index");
-    Route::get("users/create", "UserController@create")->name("users.create");
-    Route::post("users", "UserController@store")->name("users.store");
-    Route::delete("users/{id}", "UserController@destroy")->name("users.destroy");
-    Route::post("users/{user_id}/detach/{permission_id}", "UserController@detachPermission")->name("users.detach");
-    Route::get("users/index_permissions/{id}", "UserController@indexPermissions")->name("users.index_permissions");
-    Route::get("users/select_permissions/{id}", "UserController@getPermissions")->name("users.select_permissions");
-    Route::post("users/put_permissions/{id}", "UserController@putPermissions")->name("users.put_permissions");
+    Route::get("users", "UserController@index")->name("users.index")->middleware("can:users");
+    Route::get("users/create", "UserController@create")->name("users.create")->middleware("can:users");
+    Route::post("users", "UserController@store")->name("users.store")->middleware("can:users");
+    Route::delete("users/{id}", "UserController@destroy")->name("users.destroy")->middleware("can:users");
+    Route::post("users/{user_id}/detach/{permission_id}", "UserController@detachPermission")->name("users.detach")->middleware("can:users");
+    Route::get("users/index_permissions/{id}", "UserController@indexPermissions")->name("users.index_permissions")->middleware("can:users");
+    Route::get("users/getPermissions/{id}", "UserController@getPermissions")->name("users.getPermissions")->middleware("can:users");
+    Route::post("users/put_permissions/{id}", "UserController@putPermissions")->name("users.put_permissions")->middleware("can:users");
     /*
      * Routes Address
      */
@@ -59,8 +61,8 @@ Route::namespace("Admin\Web")
     /*
      * Routes Restaurants
      */
-    Route::put("restaurants/{cnpj}/modify_operating", "RestaurantController@modifyStatus")->name("restaurants.modify_operating");
-    Route::resource("restaurants", "RestaurantController");
+    Route::put("restaurants/{cnpj}/modify_operating", "RestaurantController@modifyStatus")->name("restaurants.modify_operating")->middleware("can:restaurants");
+    Route::resource("restaurants", "RestaurantController")->middleware("can:restaurants");
 
 });
 

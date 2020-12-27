@@ -14,12 +14,5 @@
 </div>
 
 <div class="form-group">
-    <select name="user_id" class="form-control">
-        @foreach($users as $user)
-            <option value="{{$user->id}}">{{$user->full_name}}</option>
-        @endforeach
-    </select>
-</div>
-<div class="form-group">
     <button class="btn btn-success">Enviar</button>
 </div>

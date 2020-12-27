@@ -235,6 +235,7 @@ return [
             'text' => 'Usuarios',
             'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
+            'can'  => 'users'
         ],
         [
             'text' => 'Categorias',
@@ -245,6 +246,7 @@ return [
             'text' => 'Restaurantes',
             'url'  => 'admin/restaurants',
             'icon' => 'fas fa-align-center',
+            'can'  => 'restaurants'
         ],
         [
             'text' => 'Produtos',
@@ -255,6 +257,7 @@ return [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-align-center',
+            'can'  => 'permissions'
         ],
     ],
 
