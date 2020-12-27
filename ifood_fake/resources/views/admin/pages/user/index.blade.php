@@ -28,6 +28,8 @@
                     <th>{{$user->phone}}</th>
                     <th>
                         <form action="{{route("users.destroy", $user->id)}}" method="POST">
+                            <a href="{{route("users.index_permissions", $user->id)}}" class="btn btn-dark">Permissões</a>
+
                             @csrf
                             @method("DELETE")
                             <a href="{{route("address.create", $user->id)}}" class="btn btn-info">Endereço</a>

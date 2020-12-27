@@ -251,6 +251,11 @@ return [
             'url'  => 'admin/products',
             'icon' => 'fas fa-align-center',
         ],
+        [
+            'text' => 'Permissões',
+            'url'  => 'admin/permissions',
+            'icon' => 'fas fa-align-center',
+        ],
     ],
 
     /*

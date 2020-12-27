@@ -16,13 +16,22 @@ Route::namespace("Admin\Web")
     })->name("admin.home");
 
     /*
+     * Routes Permissios
+     */
+
+    Route::resource("permissions", "PermissionController");
+
+    /*
      * Routes Users
      */
     Route::get("users", "UserController@index")->name("users.index");
     Route::get("users/create", "UserController@create")->name("users.create");
     Route::post("users", "UserController@store")->name("users.store");
     Route::delete("users/{id}", "UserController@destroy")->name("users.destroy");
-
+    Route::post("users/{user_id}/detach/{permission_id}", "UserController@detachPermission")->name("users.detach");
+    Route::get("users/index_permissions/{id}", "UserController@indexPermissions")->name("users.index_permissions");
+    Route::get("users/select_permissions/{id}", "UserController@getPermissions")->name("users.select_permissions");
+    Route::post("users/put_permissions/{id}", "UserController@putPermissions")->name("users.put_permissions");
     /*
      * Routes Address
      */
