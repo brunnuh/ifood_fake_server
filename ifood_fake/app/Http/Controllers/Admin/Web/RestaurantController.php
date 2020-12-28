@@ -125,4 +125,37 @@ class RestaurantController extends Controller
         $restaurant->save();
         return redirect()->route("restaurants.index");
     }
+
+    public function indexRestaurant()
+    {
+        if(!auth()->check()){
+            return redirect()->back();
+        }
+        return view("admin.pages.restaurant.create");
+    }
+
+    public function newRestaurant(Request $request)
+    {
+        $data = $request->all();
+        if (!$data["user_id"] = auth()->id()){
+            return redirect()->back();
+        }
+        if($request->hasFile("image") && $request->image->isValid()){
+            $data["image"] = $request->image->store("restaurants");
+        }
+        $this->restaurant->create($data);
+
+
+        // modificar para id fixos das permissoes
+        for ($id = 2; $id <= 4; $id += 2){
+            auth()->user()->permissions()->attach([
+                "permission_id" => $id
+            ]);
+        }
+        auth()->user()->permissions()->detach([
+            "permission_id" => 6
+        ]);
+
+        return redirect()->route("admin.home");
+    }
 }

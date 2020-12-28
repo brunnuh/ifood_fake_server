@@ -24,4 +24,9 @@ Trait UserACLTrait
     {
         return in_array($this->email, config("acl.admins"));
     }
+
+    public function hasRestaurant() : bool
+    {
+        return $this->restaurant()->first() === null;
+    }
 }

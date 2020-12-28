@@ -9,7 +9,7 @@
 @section("content")
     <div class="card">
         <div class="card-body">
-            <form action="{{route("restaurants.store")}}" class="form" method="POST" enctype="multipart/form-data">
+            <form action="{{route(isset($user) ? "restaurants.store" : "restaurants.new")}}" class="form" method="POST" enctype="multipart/form-data">
                 @csrf
                 @include("admin.pages.restaurant._partials.form")
             </form>

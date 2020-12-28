@@ -20,13 +20,15 @@
         <input type="text" name="phone" placeholder="Telefone do Restaurante" class="form-control" value="{{$restaurant->phone ?? old("phone") }}">
     </div>
 </div>
-<div class="form-group">
-    <select name="user_id" class="form-control">
-        @foreach($users as $user)
-            <option value="{{$user->id}}">{{$user->full_name}}</option>
-        @endforeach
-    </select>
-</div>
+@if(isset($users))
+    <div class="form-group">
+        <select name="user_id" class="form-control">
+            @foreach($users as $user)
+                <option value="{{$user->id}}">{{$user->full_name}}</option>
+            @endforeach
+        </select>
+    </div>
+@endif
 
 <div class="form-group">
     <button class="btn btn-success">Cadastrar</button>

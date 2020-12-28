@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Ifood-Fk',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -231,33 +231,43 @@ return [
     */
 
     'menu' => [
+
         [
             'text' => 'Usuarios',
             'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
-            'can'  => 'users'
+            'can'  => 'Usuarios'
         ],
         [
             'text' => 'Categorias',
             'url'  => 'admin/categories',
             'icon' => 'fas fa-align-center',
+            'can' => 'Categorias'
         ],
         [
             'text' => 'Restaurantes',
             'url'  => 'admin/restaurants',
             'icon' => 'fas fa-align-center',
-            'can'  => 'restaurants'
+            'can'  => 'Restaurantes'
         ],
         [
             'text' => 'Produtos',
             'url'  => 'admin/products',
             'icon' => 'fas fa-align-center',
+            'can' =>  'Produtos'
         ],
         [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-align-center',
-            'can'  => 'permissions'
+            'can'  => 'Permissoes'
+        ],
+        [
+            'text' => 'Criar Restaurante',
+            'url'  => 'admin/restaurants/new',
+            'icon' => 'fas fa-fw fa-user',
+            'icon_color' => 'primary',
+            'can' => 'Criar Restaurante'
         ],
     ],
 

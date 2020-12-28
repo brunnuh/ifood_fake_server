@@ -95,7 +95,8 @@ class UserController extends Controller
 
         $data = $request->all();
         $data["password"] = bcrypt($data["password"]);
-        $this->user->create($data);
+        $user = $this->user->create($data);
+
         return redirect()->route("users.index");
     }
 
