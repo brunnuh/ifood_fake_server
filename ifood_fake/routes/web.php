@@ -1,9 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get("test", function (){
-   dd(auth()->user()->hasPermission("Produtos"));
+   Mail::send('test', ['senha_temporaria' => '1234'], function ($m){
+       $m->from(env('MAIL_USERNAME'), env('bruno'));
+       $m->to('buhsantos16@gmail.com');
+   });
+
 });
 Route::namespace("Admin\Web")
     ->prefix("admin")

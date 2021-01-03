@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Permissions extends Migration
+class CodeUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Permissions extends Migration
      */
     public function up()
     {
-      Schema::create("permissions",function (Blueprint $table){
-         $table->id("id");
-         $table->string("name")->unique();
-         $table->string("description")->nullable();
-
-         $table->timestamps();
-      });
+        Schema::create("code_user", function (Blueprint $table){
+            $table->id('id');
+            $table->string("code");
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,6 +27,6 @@ class Permissions extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists("permissions");
+        //
     }
 }
