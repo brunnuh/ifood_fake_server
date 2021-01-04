@@ -29,14 +29,14 @@ class LoginController extends Controller
         try{
             if($user = $this->user->where("email", $request->email)->first() ){
 
-                $code = rand(10000, 99999);
+                $code = rand(10000, 99999); // mudar para nao pegar numeros repetidos ?
                 $new_code = $this->codeuser->create(["code" => $code]);
 
                 $user->update(["code_id" => $new_code->id]);
-                Mail::send('api.login', ["code" => $new_code->code], function ($msg){
+                Mail::send('api.login', ["code" => $new_code->code], function ($msg) use ($request){
                     $msg->from(env('MAIL_USERNAME'), env('Ifood_Fake'));
                     $msg->subject("codigo de login");
-                    $msg->to('buhsantos16@gmail.com');
+                    $msg->to($request->email);
                 });
                 return Response()->json(["stts" => "ok"]);
             }
@@ -44,6 +44,22 @@ class LoginController extends Controller
         }catch (\Exception $e){
             return Response()->json(["stts" => $e->getMessage()]);
         }
+    }
 
+    public function loginwithcode(Request $request)
+    {
+        try{
+
+            $user_code = $this->codeuser->where("code", $request->code)->with("user:id,code_id,email")->first();
+
+            if($user_code->user->email == $request->email){
+                return Response()->json(["stts" => "ok"]);
+            }
+
+            return Response()->json(["stts" => "erro"]);
+
+        }catch (\Exception $e){
+            return Response()->json(["stts" => $e->getMessage()], 400);
+        }
     }
 }
