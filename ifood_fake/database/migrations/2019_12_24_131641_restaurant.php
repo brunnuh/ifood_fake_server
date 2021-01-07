@@ -16,6 +16,7 @@ class Restaurant extends Migration
         Schema::create("restaurants", function (Blueprint $table){
             $table->id("cnpj");
             $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("category_restaurant_id");
             $table->string("image");
             $table->string("name")->unique();
             $table->string("phone", 14);
@@ -24,6 +25,7 @@ class Restaurant extends Migration
             $table->timestamps();
 
             $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade");
+            $table->foreign("category_restaurant_id")->on("category_restaurant")->references("id")->onDelete("cascade");
         });
     }
 

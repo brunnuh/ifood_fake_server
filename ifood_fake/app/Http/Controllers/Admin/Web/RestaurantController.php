@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantRequest;
+use App\Models\CategoryRestaurant;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -41,9 +42,10 @@ class RestaurantController extends Controller
     public function create()
     {
         $users = $this->user->all();
-
+        $category_restaurant = CategoryRestaurant::all();
         return view("admin.pages.restaurant.create",[
-            "users" => $users
+            "users" => $users,
+            "category_restaurant" => $category_restaurant
         ]);
     }
 
@@ -53,7 +55,7 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(RestaurantRequest $request)
+    public function store(RestaurantRequest $request) // admin cria um restaurante
     {
 
         $data = $request->except("image");
@@ -131,10 +133,14 @@ class RestaurantController extends Controller
         if(!auth()->check()){
             return redirect()->back();
         }
-        return view("admin.pages.restaurant.create");
+        $category_restaurant = CategoryRestaurant::all();
+
+        return view("admin.pages.restaurant.create", [
+            "category_restaurant" => $category_restaurant
+        ]);
     }
 
-    public function newRestaurant(Request $request)
+    public function newRestaurant(Request $request) // criar seu restaurante
     {
         $data = $request->all();
         if (!$data["user_id"] = auth()->id()){

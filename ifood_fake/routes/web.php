@@ -66,10 +66,10 @@ Route::namespace("Admin\Web")
     /*
      * Routes Restaurants
      */
-    Route::get("restaurants/new", "RestaurantController@indexRestaurant")->name("restaurants.new")->middleware("can:Criar Restaurante");;
-    Route::post("restaurants/new", "RestaurantController@newRestaurant")->name("restaurants.new")->middleware("can:Criar Restaurante");;
+    Route::get("restaurants/new", "RestaurantController@indexRestaurant")->name("restaurants.new");//->middleware("can:Criar Restaurante");
+    Route::post("restaurants/new", "RestaurantController@newRestaurant")->name("restaurants.new");//->middleware("can:Criar Restaurante");
     Route::put("restaurants/{cnpj}/modify_operating", "RestaurantController@modifyStatus")->name("restaurants.modify_operating")->middleware("can:Restaurantes");
-    Route::resource("restaurants", "RestaurantController")->middleware("can:restaurants")->middleware("can:Criar Restaurante");
+    Route::resource("restaurants", "RestaurantController")->middleware("can:restaurants");
 
 });
 

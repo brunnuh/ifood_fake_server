@@ -30,6 +30,19 @@
     </div>
 @endif
 
+@if(isset($category_restaurant))
+    <div class="form-group">
+        <label >
+            Categoria do Restaurante
+        </label>
+        <select name="category_restaurant_id" class="form-control">
+            @foreach($category_restaurant as $cr)
+                <option value="{{$cr->id}}">{{$cr->name}}</option>
+            @endforeach
+        </select>
+    </div>
+@endif
+
 <div class="form-group">
     <button class="btn btn-success">Cadastrar</button>
 </div>

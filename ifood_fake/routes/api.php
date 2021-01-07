@@ -5,9 +5,27 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::namespace("Api")->group(function (){
+
+    /*
+     *  Login
+     */
     Route::post("verifycode", "LoginController@verifycode");
     Route::post("loginwithcode", "LoginController@loginwithcode");
+
+    /*
+     * Products
+     */
+
+    Route::resource("products", "ProductController");
+
+
+    /*
+     * Restaurants
+     */
+
+    Route::resource("restaurants", "RestaurantController");
 });
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
