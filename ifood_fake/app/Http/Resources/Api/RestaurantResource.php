@@ -14,14 +14,16 @@ class RestaurantResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             "image" => url("storage/{$this->image}"),
             "name" => $this->name,
             "phone" => $this->phone,
             "status_operating" => $this->status_operating,
             "note" => $this->note,
-            "category_restaurant" => $this->category_restaurant,
-
         ];
+        if($this->category_restaurant != null)
+            $data["category_restaurant"] = $this->category_restaurant;
+
+        return $data;
     }
 }

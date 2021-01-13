@@ -26,6 +26,13 @@ Route::namespace("Api")->group(function (){
      */
 
     Route::resource("restaurants", "RestaurantController");
+
+
+    /*
+     * CategoriesRestaurants
+     */
+
+    Route::post("categories_restaurant/{id}", "CategoryRestaurantController@show");
 });
 /*
 Route::middleware('auth:api')->get('/user', function (Request $request) {

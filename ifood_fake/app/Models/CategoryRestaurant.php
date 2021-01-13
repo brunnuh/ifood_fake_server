@@ -12,4 +12,10 @@ class CategoryRestaurant extends Model
     protected $fillable = ["name"];
 
     protected $hidden = ["id"];
+
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }
